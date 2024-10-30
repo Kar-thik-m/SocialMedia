@@ -9,7 +9,7 @@ import {
     deleteCommentRequest,
     deleteCommentSuccess
 } from "../Slice/CommentSlice";
-import { Url } from "../../../.config";
+import { Url } from "../../../config";
 
 export const GetAllComments = (id) => async (dispatch) => {
     dispatch(getCommentRequest());

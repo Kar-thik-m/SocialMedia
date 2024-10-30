@@ -13,7 +13,7 @@ import {
     updateSuccess
 } from "../Slice/UserProfileSlice";
 
-import { Url } from "../../../.config";
+import { Url } from "../../../config";
 
 export const GetProfileByUser = (id) => async (dispatch) => {
     dispatch(getProfileRequest());

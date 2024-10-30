@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { Url } from '../../config';
 
 const AuthContext = createContext();
 
@@ -11,7 +12,7 @@ export const AuthProvider = ({ children }) => {
       const token = localStorage.getItem('token');
       if (token) {
         try {
-          const response = await fetch('http://localhost:4000/user/loaduser', {
+          const response = await fetch(`${Url}/user/loaduser`, {
             headers: { Authorization: `Bearer ${token}` },
           });
 
@@ -30,7 +31,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const register = async (userData) => {
-    const response = await fetch('http://localhost:4000/user/register', {
+    const response = await fetch(`${Url}/user/register`, {
       method: 'POST',
       body: userData,
     });
@@ -45,7 +46,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = async (credentials) => {
-    const response = await fetch('http://localhost:4000/user/login', {
+    const response = await fetch(`${Url}/user/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(credentials),

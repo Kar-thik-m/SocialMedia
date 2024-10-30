@@ -6,7 +6,7 @@ import {
     getmessageRequest,
     getmessageSuccess
 } from "../Slice/MessageSlice";
-import { Url } from "../../../.config";
+import { Url } from "../../../config";
 
 export const postMessage = (id, message) => async (dispatch) => {
     try {

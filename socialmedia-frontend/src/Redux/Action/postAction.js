@@ -12,7 +12,7 @@ import {
     unlikePostSuccess,
     unlikePostFailure
 } from "../Slice/PostSlice";
-import { Url } from "../../../.config";
+import { Url } from "../../../config";
 
 export const GetPostAll = () => async (dispatch) => {
     try {
