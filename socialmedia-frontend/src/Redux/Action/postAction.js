@@ -12,12 +12,13 @@ import {
     unlikePostSuccess,
     unlikePostFailure
 } from "../Slice/PostSlice";
+import { Url } from "../../../.config";
 
 export const GetPostAll = () => async (dispatch) => {
     try {
         dispatch(getallpostRequest());
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:4000/item/getitemposts`, {
+        const response = await fetch(`${Url}/item/getitemposts`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
@@ -42,7 +43,7 @@ export const CreatePostAction = (formData) => async (dispatch) => {
             throw new Error('No authentication token found');
         }
 
-        const response = await fetch('http://localhost:4000/item/itempost', {
+        const response = await fetch(`${Url}/item/itempost`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -70,7 +71,7 @@ export const PostLike = (postId) => async (dispatch) => {
             throw new Error('No authentication token found');
         }
 
-        const response = await fetch(`http://localhost:4000/item/itempost/like/${postId}`, {
+        const response = await fetch(`${Url}/item/itempost/like/${postId}`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -83,13 +84,12 @@ export const PostLike = (postId) => async (dispatch) => {
         }
 
         const data = await response.json(); 
-        dispatch(likePostSuccess(postId )); 
+        dispatch(likePostSuccess(postId)); 
     } catch (err) {
         dispatch(likePostFailure(err.message)); 
         console.error('Error liking post:', err.message);
     }
 };
-
 
 export const PostUnlike = (postId) => async (dispatch) => {
     try {
@@ -99,7 +99,7 @@ export const PostUnlike = (postId) => async (dispatch) => {
             throw new Error('No authentication token found');
         }
 
-        const response = await fetch(`http://localhost:4000/item/itempost/unlike/${postId}`, {
+        const response = await fetch(`${Url}/item/itempost/unlike/${postId}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -111,12 +111,9 @@ export const PostUnlike = (postId) => async (dispatch) => {
             throw new Error(error || 'Failed to unlike post');
         }
 
-        
-     
         dispatch(unlikePostSuccess(postId)); 
     } catch (err) {
         dispatch(unlikePostFailure(err.message));
         console.error('Error unliking post:', err.message);
     }
 };
-

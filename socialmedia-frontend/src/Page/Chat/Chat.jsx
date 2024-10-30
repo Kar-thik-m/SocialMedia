@@ -20,7 +20,7 @@ const Chat = ({ contact }) => {
         dispatch(getMessages(receiverId));
 
 
-        const newSocket = io('http://localhost:4000', {
+        const newSocket = io('https://socialmedia-nhb5.onrender.com/', {
             transports: ['websocket'],
         });
 

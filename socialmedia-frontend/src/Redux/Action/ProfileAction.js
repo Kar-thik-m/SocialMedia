@@ -1,17 +1,25 @@
 import {
-    getProfileRequest, getProfileFailure, getProfileSuccess,
-    followingFailure, followingRequest, followingSuccess,
-    unfollowFailure, unfollowRequest, unfollowSuccess,
-    updateFailure, updateRequest, updateSuccess
+    getProfileRequest,
+    getProfileFailure,
+    getProfileSuccess,
+    followingFailure,
+    followingRequest,
+    followingSuccess,
+    unfollowFailure,
+    unfollowRequest,
+    unfollowSuccess,
+    updateFailure,
+    updateRequest,
+    updateSuccess
 } from "../Slice/UserProfileSlice";
 
-
+import { Url } from "../../../.config";
 
 export const GetProfileByUser = (id) => async (dispatch) => {
-    dispatch(getProfileRequest())
+    dispatch(getProfileRequest());
     try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:4000/user/profile/${id}`, {
+        const response = await fetch(`${Url}/user/profile/${id}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
@@ -24,15 +32,11 @@ export const GetProfileByUser = (id) => async (dispatch) => {
         }
 
         const data = await response.json();
-        
         dispatch(getProfileSuccess(data));
     } catch (error) {
         dispatch(getProfileFailure(error.message || 'An error occurred'));
     }
-}
-
-
-
+};
 
 export const Follow = (id) => async (dispatch) => {
     try {
@@ -43,29 +47,26 @@ export const Follow = (id) => async (dispatch) => {
             throw new Error('No authentication token found');
         }
 
-        const response = await fetch(`http://localhost:4000/user/follow/${id}`, {
+        const response = await fetch(`${Url}/user/follow/${id}`, {
             method: 'POST',
             headers: {
-
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
-
             },
-
         });
+
         if (!response.ok) {
             const errorText = await response.text();
             throw new Error(errorText || 'Network response was not ok');
         }
+
         await response.json();
         dispatch(followingSuccess(id));
     } catch (error) {
         console.error('Error:', error);
         dispatch(followingFailure(error.toString()));
     }
-
-}
-
+};
 
 export const UnFollow = (id) => async (dispatch) => {
     try {
@@ -76,29 +77,26 @@ export const UnFollow = (id) => async (dispatch) => {
             throw new Error('No authentication token found');
         }
 
-        const response = await fetch(`http://localhost:4000/user/unfollow/${id}`, {
+        const response = await fetch(`${Url}/user/unfollow/${id}`, {
             method: 'POST',
             headers: {
-
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
-
             },
-
         });
+
         if (!response.ok) {
             const errorText = await response.text();
             throw new Error(errorText || 'Network response was not ok');
         }
+
         await response.json();
         dispatch(unfollowSuccess(id));
     } catch (error) {
         console.error('Error:', error);
         dispatch(unfollowFailure(error.toString()));
     }
-
-}
-
+};
 
 export const updateProfile = (userData, userId) => async (dispatch) => {
     try {
@@ -118,7 +116,7 @@ export const updateProfile = (userData, userId) => async (dispatch) => {
             formData.append('file', userData.file);
         }
 
-        const response = await fetch(`http://localhost:4000/user/updateprofile/${userId}`, {
+        const response = await fetch(`${Url}/user/updateprofile/${userId}`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`,

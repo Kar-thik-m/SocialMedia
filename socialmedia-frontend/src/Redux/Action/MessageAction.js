@@ -1,7 +1,12 @@
 import {
-    postMessageFailure, postMessageRequest, postMessageSuccess, getmessageFailure,
-    getmessageRequest, getmessageSuccess
+    postMessageFailure,
+    postMessageRequest,
+    postMessageSuccess,
+    getmessageFailure,
+    getmessageRequest,
+    getmessageSuccess
 } from "../Slice/MessageSlice";
+import { Url } from "../../../.config";
 
 export const postMessage = (id, message) => async (dispatch) => {
     try {
@@ -14,7 +19,7 @@ export const postMessage = (id, message) => async (dispatch) => {
             throw new Error('Message content is required.');
         }
 
-        const response = await fetch(`http://localhost:4000/messageuser/sendMessage/${id}`, {
+        const response = await fetch(`${Url}/messageuser/sendMessage/${id}`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -36,9 +41,6 @@ export const postMessage = (id, message) => async (dispatch) => {
     }
 };
 
-
-
-
 export const getMessages = (id) => async (dispatch) => {
     try {
         dispatch(getmessageRequest());
@@ -47,11 +49,10 @@ export const getMessages = (id) => async (dispatch) => {
             throw new Error('No authentication token found');
         }
 
-        const response = await fetch(`http://localhost:4000/messageuser/getMessage/${id}`, {
+        const response = await fetch(`${Url}/messageuser/getMessage/${id}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
-
             },
         });
 
