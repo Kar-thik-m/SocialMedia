@@ -1,0 +1,226 @@
+.profiles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: sans-serif;
+    padding: 10px 0px;
+}
+
+.profileimage {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profilename {
+    font-size: 2.5rem; /* Responsive font size */
+    padding-top: 10px;
+}
+
+.gmail {
+    color: rgb(100, 98, 98);
+    padding-bottom: 10px;
+}
+
+.follows {
+    display: flex;
+    gap: 1rem;
+    padding: 10px 0px;
+    font-size: large;
+    font-family: serif;
+}
+
+.following,
+.followers {
+    cursor: pointer;
+}
+
+.edit {
+    width: 5rem;
+    padding: 10px;
+    background-color: rgb(59, 58, 58);
+    border-radius: 10px;
+    text-decoration: none;
+    color: aliceblue;
+}
+
+.follow {
+    padding: 10px;
+    background-color: #b7bbbe;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem; 
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    text-align: center;
+}
+
+.unfollow {
+    padding: 10px;
+    background-color: #262727;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem; 
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    text-align: center;
+    color: aliceblue;
+}
+
+.saveandcreate {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    font-size: large;
+    color: rgb(19, 20, 20);
+    width: 100%;
+}
+
+.saveandcreate > a {
+    text-decoration: none;
+    color: rgb(19, 20, 20);
+    font-size: x-large;
+    padding: 10px;
+}
+
+.saveandcreate > a:hover {
+    cursor: pointer;
+    background-color: rgb(229, 235, 235);
+    border-radius: 8px;
+}
+
+.createlink {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+}
+
+.createlink a {
+    color: white;
+    text-decoration: none;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: red;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.createlink a:hover {
+    cursor: pointer;
+    background-color: darkred;
+    color: lightgray;
+}
+
+.backfollows {
+    width: 100%;
+    height: 130vh;
+    top: -5rem;
+    left: 0;
+    margin: 0;
+    position: absolute;
+    background: rgba(31, 30, 30, 0.2);
+}
+
+.centerfollowing {
+    position: relative;
+    bottom: -10rem;
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: 90%; 
+    max-width: 600px; 
+    height: 70vh;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.showfollowing {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.showfollowing > div {
+    font-size: x-large;
+    padding: 10px;
+    color: gray;
+}
+
+.showfollowing > i {
+    font-size: x-large;
+    cursor: pointer;
+}
+
+.followingdetails {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.followingdetails > div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.followingimgs {
+    width: 50px;
+    border-radius: 50%;
+}
+
+
+@media (max-width: 768px) {
+    .profileimage {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profilename {
+        font-size: 2rem; 
+    }
+
+    .gmail {
+        font-size: 0.9rem; 
+    }
+
+    .follows {
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    .saveandcreate {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .centerfollowing {
+        width: 90%;
+        max-width: 100%;
+        left: 5%;
+    }
+}
+
+@media (max-width: 480px) {
+    .profilename {
+        font-size: 1.5rem;
+    }
+
+    .follow,
+    .unfollow {
+        font-size: 0.9rem;
+    }
+
+    .followingimgs {
+        width: 40px;
+    }
+}

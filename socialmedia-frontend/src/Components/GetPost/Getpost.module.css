@@ -1,0 +1,102 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px; /* Limit the width similar to Instagram */
+    margin: auto;
+    padding: 10px;
+}
+
+.post {
+    background-color: #fff;
+    border: 1px solid #dbdbdb;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.userImage {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.username {
+    font-weight: bold;
+    color: #262626;
+}
+
+.createdAt {
+    font-size: 12px;
+    color: #999;
+    margin-left: auto;
+}
+
+.postImage {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.likesandcomment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.likesandcomment span {
+    font-weight: bold;
+    color: #262626;
+}
+.likesandlikes{
+   display: flex;
+   gap: 1rem;
+   font-size: large;
+}
+.comments {
+    font-size: 14px;
+    color: #0095f6;
+    cursor: pointer;
+}
+
+.setcomments {
+    padding: 10px;
+    border-top: 1px solid #dbdbdb;
+    background-color: #f9f9f9; 
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+    margin: 20px;
+}
+
+.loading {
+    font-size: 16px;
+    color: #999;
+    margin: 20px;
+}
+
+
+.fa-heart, .fa-heart-o {
+    cursor: pointer;
+    font-size: 20px;
+    margin-left: 10px;
+    color: #ed4956; 
+    transition: color 0.2s ease;
+}
+
+.fa-heart:hover, .fa-heart-o:hover {
+    color: #c13584; 
+}

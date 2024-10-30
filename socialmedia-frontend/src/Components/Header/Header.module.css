@@ -1,0 +1,61 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #dbdbdb;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logoImage {
+    width: 40px; /* Adjust size as needed */
+    height: 40px;
+    margin-right: 10px;
+}
+
+.logoText {
+    font-size: 24px;
+    font-weight: bold;
+    color: #262626; /* Dark color similar to Instagram */
+    text-decoration: none;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.navLink {
+    margin: 0 15px;
+    font-size: 16px;
+    color: #262626; /* Dark color for links */
+    text-decoration: none;
+}
+
+.navLink:hover {
+    text-decoration: underline;
+}
+
+.logoutButton {
+    background-color: transparent;
+    border: none;
+    color: #262626;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.logoutButton:hover {
+    text-decoration: underline;
+}
+.userImage {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
