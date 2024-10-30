@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PostStyle from "../Post/Post.module.css"; 
-import { CreatePostAction } from '../../Redux/Action/PostAction'; 
+import { CreatePostAction } from '../../Redux/Action/PostAction.js'; 
 import CircularProgress from '@mui/material/CircularProgress'; 
 import { Box } from '@mui/material';     
 
