@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { GetPostAll, PostUnlike, PostLike } from "../../Redux/Action/postAction.js";
 import { useDispatch, useSelector } from "react-redux";
-import getpoststyles from '../GetPost/Getpost.module';
+import getpoststyles from '../GetPost/Getpost.module.css';
 import Comment from "../Comments/Comment.jsx";
 import { useAuth } from "../../contextApi/AuthContext";
 import { Link } from "react-router-dom";
