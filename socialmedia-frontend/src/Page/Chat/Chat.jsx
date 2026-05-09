@@ -3,7 +3,6 @@ import { Link, useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import { useDispatch, useSelector } from 'react-redux';
 import { postMessage, getMessages } from '../../Redux/Action/MessageAction';
-import ChatStyle from "../Chat/Chat.module.css";
 import { useAuth } from '../../contextApi/AuthContext';
 
 const Chat = ({ contact }) => {
@@ -14,11 +13,9 @@ const Chat = ({ contact }) => {
     const [input, setInput] = useState('');
     const [messages, setMessages] = useState([]);
     const [isSending, setIsSending] = useState(false);
-    const [onlineUsers, setOnlineUsers] = useState([]);
+    
     useEffect(() => {
-
         dispatch(getMessages(receiverId));
-
 
         const newSocket = io('https://socialmedia-nhb5.onrender.com/', {
             transports: ['websocket'],
@@ -30,12 +27,7 @@ const Chat = ({ contact }) => {
             }
         });
 
-        newSocket.on("getUsers", (onlineUsers) => {
-            dispatch(setOnlineUsers(onlineUsers));
-        });
-
         newSocket.on("message", (msg) => {
-
             setMessages((prevMessages) => {
                 if (!prevMessages.some(m => m._id === msg._id)) {
                     return [...prevMessages, msg];
@@ -70,38 +62,49 @@ const Chat = ({ contact }) => {
     };
 
     return (
-        <div className={ChatStyle.chatContainer}>
-            <div className={ChatStyle.othernames}>
-                <div>{contact?.username}</div>
+        <div className="p-5 max-w-[600px] mx-auto border border-gray-300 rounded-xl bg-white shadow-sm h-[80vh] flex flex-col">
+            <div className="flex items-center justify-between mb-5 font-mono font-bold border-b pb-3">
+                <div className="text-lg">{contact?.username}</div>
                 <Link to={`/profile/${receiverId}`}>
-                    <img src={contact?.userimage.url} className={ChatStyle.otherimage} alt={`${contact?.username}'s avatar`} />
+                    <img src={contact?.userimage.url} className="rounded-full w-12 h-12 object-cover border-2 border-blue-500 p-0.5" alt={`${contact?.username}'s avatar`} />
                 </Link>
             </div>
-            <div>
-                <ul className={ChatStyle.messageList}>
+            <div className="flex-1 overflow-y-auto mb-4 scrollbar-hide">
+                <div className="flex flex-col gap-2">
                     {messages.map((msg, index) => (
-
                         <div
-                            key={msg._id || index} className={msg.senderId === user?._id ? ChatStyle.messageRight : ChatStyle.messageLeft}
->
+                            key={msg._id || index} 
+                            className={`p-3 rounded-2xl max-w-[80%] break-words ${
+                                msg.senderId === user?._id 
+                                ? "bg-green-600 text-white self-end rounded-tr-none" 
+                                : "bg-gray-100 text-gray-800 self-start rounded-tl-none"
+                            }`}
+                        >
                             {msg.content}
                         </div>
-
                     ))}
-                </ul>
+                </div>
             </div>
-            <form onSubmit={handleSendMessage}>
+            <form onSubmit={handleSendMessage} className="flex gap-2 pt-2 border-t">
                 <input
                     type="text"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    placeholder="Type your message"
+                    placeholder="Type your message..."
                     required
+                    className="flex-1 p-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                 />
-                <button type="submit" disabled={isSending}>Send</button> {/* Disable button while sending */}
+                <button 
+                    type="submit" 
+                    disabled={isSending}
+                    className="px-6 py-2 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition-colors disabled:bg-gray-400"
+                >
+                    Send
+                </button>
             </form>
         </div>
     );
 };
 
 export default Chat;
+
